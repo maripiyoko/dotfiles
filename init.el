@@ -86,3 +86,10 @@
 (set-face-attribute 'default nil
 					:family "Menlo"
 					:height 120)
+(set-fontset-font
+nil 'japanese-jisx0208
+(font-spec :family "Osaka"))
+
+;; git front end Egg setting
+(when (executable-find "git")
+  (require 'egg nil t))
