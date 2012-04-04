@@ -17,15 +17,25 @@
 (require 'install-elisp)
 (setq install-elisp-repository-directory "~/.emacs.d/elisp/")
 
+;; auto-install settings
+(when (require 'auto-install nil t)
+  ;; set install directory
+  (setq auto-install-directory "~/.emacs.d/elisp")
+  ;; Emacswikiに登録されているelispの名前を取得する
+  (auto-install-update-emacswiki-package-name t)
+  ;; install-elisp の関数を利用可能にする
+  (auto-install-compatibility-setup))
+
 ;; basic setup
 (setq inhibit-startup-message t)  ; don't show the startup message
 (setq make-backup-files t)        ; make backup file
 (setq visible-bell t)             ; don't beep
+(define-key global-map [?¥] [?\\])  ;; ¥の代わりにバックスラッシュを入力する
 
 ;; setting for max OSX emacs 23 for swap command key and meta key
 (cond
  ((string-match "apple-darwin" system-configuration)
-  (setq ns-comand-modifier (quote meta))
+  (setq ns-command-modifier (quote meta))
   (setq ns-alternate-modifier (quote super))
   )
 )
@@ -34,6 +44,7 @@
 (set-frame-parameter nil 'alpha 90)
 (column-number-mode t)            ; display column number
 (size-indication-mode t)          ; display file size
+(global-set-key "\M-n" 'linum-mode) ; linum-mode on 
 
 ; timer settings
 (setq display-time-day-and-date t)
@@ -70,3 +81,8 @@
   (interactive)
   (switch-to-buffer (other-buffer)))
 (global-set-key (kbd "C-t") 'switch-to-last-buffer)
+
+;; font settings
+(set-face-attribute 'default nil
+					:family "Menlo"
+					:height 120)
