@@ -52,3 +52,7 @@
   ;; If there is more than one, they won't work right.
  )
 
+;; add setting for latex pdf
+(setq org-latex-to-pdf-process
+	  '("/Applications/UpTeX.app/teTeX/bin/dotexshop-utf8-nonstop %s"
+		"/Applications/UpTeX.app/teTeX/bin/dotexshop-utf8-nonstop %s"))
