@@ -12,12 +12,15 @@
 			(normal-top-level-add-subdirs-to-load-path))))))
 
 ;; 引数のディレクトリとそのサブディレクトリload-pathに追加
-(add-to-load-path "elisp" "conf" "public_repos" "site-lisp")
+(add-to-load-path "elisp" "conf" "public_repos")
+
+(require 'install-elisp)
+(setq install-elisp-repository-directory "~/.emacs.d/elisp/")
+;(yes/global-mode 1)
 
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/site-lisp/ac-dict")
 (ac-config-default)
-
 
 ;; auto-complete settings
 (when (require 'auto-complete-config nil t)
@@ -111,6 +114,13 @@ nil 'japanese-jisx0208
 (load "conf/init-tcl")
 (load "conf/init-org-mode")
 (load "conf/smart-compile-conf")
+;(load "conf/init-xml-mode")
+
+;; markdown-mode
+(autoload 'markdown-mode "markdown-mode"
+  "Major mode for editing Markdonw files" t)
+(setq auto-mode-alist
+      (cons '("\\.md$" . markdown-mode) auto-mode-alist))
 
 ;; anything
 ;; (auto-install-batch "anything")
@@ -173,3 +183,4 @@ nil 'japanese-jisx0208
 ;;(windmove-default-keybindings 'meta) ; Alt の場合は meta を指定
 ;; Mac の Command + 矢印でウィンドウを移動する
 (windmove-default-keybindings 'super)
+
