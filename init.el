@@ -12,7 +12,7 @@
 			(normal-top-level-add-subdirs-to-load-path))))))
 
 ;; 引数のディレクトリとそのサブディレクトリload-pathに追加
-(add-to-load-path "elisp" "conf" "public_repos")
+(add-to-load-path "elisp" "conf" "public_repos" "site-lisp")
 
 (require 'install-elisp)
 (setq install-elisp-repository-directory "~/.emacs.d/elisp/")
@@ -109,6 +109,11 @@ nil 'japanese-jisx0208
 (when (executable-find "git")
   (require 'egg nil t))
 
+;; 矩形選択をON
+(cua-mode t)
+(setq cua-enable-cua-keys nil)  ; cuaキーバインドを無効にする
+
+
 ;; load other configs
 (load "conf/init-groovy")
 (load "conf/init-tcl")
@@ -121,6 +126,7 @@ nil 'japanese-jisx0208
   "Major mode for editing Markdonw files" t)
 (setq auto-mode-alist
       (cons '("\\.md$" . markdown-mode) auto-mode-alist))
+(setq markdown-command-needs-filename t)
 
 ;; anything
 ;; (auto-install-batch "anything")
