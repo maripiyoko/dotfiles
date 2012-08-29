@@ -1,4 +1,4 @@
-;; Set load-path
+; Set load-path
 (setq load-path (cons "~/.emacs.d" load-path))
 
 ;; load-pathを追加する関数定義
@@ -12,7 +12,10 @@
 			(normal-top-level-add-subdirs-to-load-path))))))
 
 ;; 引数のディレクトリとそのサブディレクトリload-pathに追加
-(add-to-load-path "elisp" "conf" "public_repos" "site-lisp")
+(add-to-load-path "elisp" "conf" "public_repos" "site-lisp" "plugins")
+
+
+
 
 (require 'install-elisp)
 (setq install-elisp-repository-directory "~/.emacs.d/elisp/")
@@ -119,6 +122,9 @@ nil 'japanese-jisx0208
 (load "conf/init-tcl")
 (load "conf/init-org-mode")
 (load "conf/smart-compile-conf")
+(load "conf/init-ruby-mode")
+(load "conf/init-ror-mode")
+(load "conf/init-tabbar-mode")
 ;(load "conf/init-xml-mode")
 
 ;; markdown-mode
@@ -190,3 +196,8 @@ nil 'japanese-jisx0208
 ;; Mac の Command + 矢印でウィンドウを移動する
 (windmove-default-keybindings 'super)
 
+;; gtags-modeのキーバインドを有効化する
+(setq gtags-suggested-key-mapping t)
+(require 'gtags nil t)
+
+ 
